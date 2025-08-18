@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WeroScripts - Scripts</title>
+
+<!-- ===== GOOGLE ADSENSE ===== -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8892399938536197"
+     crossorigin="anonymous"></script>
+
 <style>
   body { margin: 0; font-family: Arial, sans-serif; background: #0f0f1a; color: #fff; overflow-x: hidden; position: relative; }
   canvas#particles { position: fixed; top:0; left:0; z-index:0; }
@@ -12,7 +17,7 @@
   header {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Logo a la izquierda */
+    justify-content: flex-start; 
     position: relative;
     padding: 15px 20px;
     background: rgba(26,26,46,0.85);
@@ -123,11 +128,9 @@
 <canvas id="particles"></canvas>
 
 <header>
-  <!-- Logo clickeable -->
   <a href="https://www.youtube.com/@WeroScripts" target="_blank" class="logo-link">
     <img src="Assets/Chuchopag.png" alt="WeroScripts" class="logo">
   </a>
-  <!-- Barra de búsqueda centrada -->
   <input type="text" id="search" placeholder="Buscar script...">
 </header>
 
@@ -223,6 +226,14 @@
   const weroHubFrame = document.getElementById("weroHubFrame");
   const closeBtn = document.getElementById("closeBtn");
 
+  let clickCount = 0; // Contador de clicks para mostrar anuncio primero
+
+  function showAd(callback){
+    // Abre anuncio en nueva pestaña antes de mostrar contenido real
+    window.open("https://lilwero20.github.io/Web/anuncio.html","_blank");
+    setTimeout(callback, 500); // Luego abrir contenido real
+  }
+
   function openCard(cardId, htmlFile){
     weroHubFrame.style.transition = "opacity 0.5s";
     weroHubFrame.style.opacity = 0;
@@ -239,8 +250,14 @@
       card.setAttribute("data-id", cardId);
       card.originalTitle = card.dataset.title;
       card.originalSubtitle = card.dataset.subtitle;
+
       card.addEventListener("click", ()=>{
-        openCard(cardId, card.dataset.html);
+        clickCount++;
+        if(clickCount <= 2){
+          showAd(()=> openCard(cardId, card.dataset.html));
+        } else {
+          openCard(cardId, card.dataset.html);
+        }
       });
     });
   }
