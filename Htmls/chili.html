@@ -515,9 +515,26 @@
             <p class="subtitle">Selecciona el método que prefieras para conseguir tus scripts</p>
             
             <div class="button-grid">
-                <a href="https://rkns.link/dtrzy" class="btn orange animate__animated animate__fadeInLeft" target="_blank">
-                    <i class="fas fa-code"></i> Get Script (Linkvertise)
-                </a>
+    <a id="scriptBtn" href="https://rkns.link/dtrzy" class="btn orange animate__animated animate__fadeInLeft" target="_blank">
+        <i class="fas fa-code"></i> Get Script (Linkvertise)
+    </a>
+</div>
+
+<script>
+  const btn = document.getElementById("scriptBtn");
+  let firstClickDone = false;
+
+  btn.addEventListener("click", function(e){
+    if(!firstClickDone){
+      e.preventDefault(); // Evita ir al link normal
+      window.open("https://otieu.com/4/9738029", "_blank"); // Primer click: anuncio
+      firstClickDone = true;
+      // Cambiar el href del botón al link del script para los siguientes clics
+      btn.href = "https://rkns.link/dtrzy";
+    }
+    // Después del primer clic, el botón abrirá el link del script
+  });
+</script>
               
                 <a href="https://rkns.link/ym9l1" class="btn blue animate__animated animate__fadeInLeft" target="_blank">
                     <i class="fas fa-download"></i> Consigue Delta
@@ -681,8 +698,8 @@
             // Cargar video aleatorio
             const channelId = "UCpQw2pQnXlQkYvNULmKM2Vw";
             const videos = [
-                "ucr4_9SArXM",
-                "ucr4_9SArXM"
+                "6W0uFldELXg",
+                "6W0uFldELXg"
             ];
             
             const randomVideo = videos[Math.floor(Math.random() * videos.length)];
@@ -747,4 +764,5 @@
 </body>
 
 </html>
+
 
