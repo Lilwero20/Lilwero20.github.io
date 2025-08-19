@@ -17,7 +17,7 @@ header .logo { height: 45px; }
 header input { flex: 1 1 300px; max-width: 600px; padding: 8px 12px; border-radius: 12px; border: none; outline: none; font-size: 16px; background: rgba(255,255,255,0.1); color: #fff; transition: background 0.3s; text-align:center; }
 header input:focus { background: rgba(76,201,240,0.2); }
 /* TARJETAS */
-.card-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; z-index:1; position: relative; pointer-events:none; opacity:0.5; }
+.card-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; z-index:1; position: relative; }
 .card { display: flex; align-items: center; background: rgba(31,31,47,0.95); border-radius: 16px; box-shadow: 0 0 15px rgba(76,201,240,0.4); cursor: pointer; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; border: 2px solid rgba(76,201,240,0.2); flex-direction: row; padding: 5px; position: relative; }
 .card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(76,201,240,0.7); }
 .card img { width: 120px; height: 100px; object-fit: cover; border-radius: 12px; margin: 10px; flex-shrink: 0; }
@@ -142,6 +142,8 @@ function enablePage(){
   cardsContainer.style.pointerEvents="auto";
   cardsContainer.style.opacity=1;
   searchInput.disabled=false;
+  // Remueve listener global
+  document.removeEventListener("click", globalAdListener, true);
 }
 
 function openCard(cardId, htmlFile){
@@ -154,6 +156,20 @@ function openCard(cardId, htmlFile){
   window.location.hash = `menuNum=${cardId}`;
 }
 
+function globalAdListener(e){
+  // Ignora clicks dentro del iframe y botones del menú
+  if(e.target.closest("#iframeContainer,#closeBtn")) return;
+  clickCount++;
+  showAd(()=>{
+    if(clickCount>=2) enablePage();
+  });
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+// Activa listener global antes de 2 clicks
+document.addEventListener("click", globalAdListener, true);
+
 function initCards(){
   document.querySelectorAll(".card").forEach((card,index)=>{
     const cardId = index+1;
@@ -161,13 +177,9 @@ function initCards(){
     card.originalTitle = card.dataset.title;
     card.originalSubtitle = card.dataset.subtitle;
     card.addEventListener("click",()=>{
-      clickCount++;
-      if(clickCount<=2){
-        showAd(()=>{
-          if(clickCount===2) enablePage();
-          openCard(cardId, card.dataset.html);
-        });
-      } else { openCard(cardId, card.dataset.html); }
+      if(clickCount>=2){
+        openCard(cardId, card.dataset.html);
+      }
     });
   });
 }
