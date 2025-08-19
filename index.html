@@ -17,25 +17,28 @@
   header {
     display: flex;
     align-items: center;
-    justify-content: flex-start; 
-    position: relative;
-    padding: 15px 20px;
+    justify-content: space-between; /* espacio entre logo y búsqueda */
+    padding: 10px 15px;
     background: rgba(26,26,46,0.85);
     backdrop-filter: blur(5px);
+    position: relative;
     z-index: 2;
   }
 
-  header .logo-link { display: inline-block; z-index: 2; }
-  header .logo { height: 45px; }
+  header .logo-link {
+    display: inline-block;
+    z-index: 2;
+  }
 
-  /* Barra de búsqueda centrada */
+  header .logo {
+    height: 45px;
+  }
+
+  /* Barra de búsqueda */
   header input {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    max-width: 80%;
-    padding: 10px;
+    flex: 1; /* ocupa todo el espacio restante */
+    margin-left: 15px; /* separa de logo */
+    padding: 8px 12px;
     border-radius: 12px;
     border: none;
     outline: none;
@@ -43,10 +46,11 @@
     background: rgba(255,255,255,0.1);
     color: #fff;
     transition: background 0.3s;
-    z-index: 1;
   }
 
-  header input:focus { background: rgba(76,201,240,0.2); }
+  header input:focus {
+    background: rgba(76,201,240,0.2);
+  }
 
   /* TARJETAS */
   .card-container {
@@ -108,13 +112,22 @@
 
   iframe { flex:1; width:100%; height:100%; border:none; opacity:0; }
 
+  /* RESPONSIVE */
   @media screen and (max-width:768px) {
     .card-container { grid-template-columns: 1fr; }
     .card { flex-direction: column; text-align:center; }
     .card img { width:80%; height:auto; }
   }
   @media screen and (max-width:480px) {
-    header input { width:95%; left: 50%; transform: translateX(-50%); }
+    header {
+      flex-direction: column; /* logo arriba, barra debajo */
+      align-items: stretch;
+    }
+    header input {
+      margin-left: 0;
+      margin-top: 10px;
+      width: 100%;
+    }
     .card img { width:100%; }
     .card-content h3 { font-size:18px; }
     .card-content p { font-size:12px; }
@@ -226,12 +239,11 @@
   const weroHubFrame = document.getElementById("weroHubFrame");
   const closeBtn = document.getElementById("closeBtn");
 
-  let clickCount = 0; // Contador de clicks para mostrar anuncio primero
+  let clickCount = 0;
 
   function showAd(callback){
-    // Abre anuncio en nueva pestaña antes de mostrar contenido real
     window.open("https://lilwero20.github.io/Web/anuncio.html","_blank");
-    setTimeout(callback, 500); // Luego abrir contenido real
+    setTimeout(callback, 500);
   }
 
   function openCard(cardId, htmlFile){
