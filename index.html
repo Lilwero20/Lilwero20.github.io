@@ -4,48 +4,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WeroScripts - Scripts</title>
+
 <!-- ===== GOOGLE ADSENSE ===== -->
 <meta name="monetag" content="6e6c8f4a393b9351b9e958f72b0e002d">
+
 <style>
-body { margin: 0; font-family: Arial, sans-serif; background: #0f0f1a; color: #fff; overflow-x: hidden; position: relative; }
-canvas#particles { position: fixed; top:0; left:0; z-index:0; }
-/* HEADER */
-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 15px; background: rgba(26,26,46,0.85); backdrop-filter: blur(5px); position: relative; z-index: 2; gap: 15px; flex-wrap: wrap; }
-header .logo-link { display: inline-block; z-index: 2; }
-header .logo { height: 45px; }
-/* Barra de búsqueda */
-header input { flex: 1 1 300px; max-width: 600px; padding: 8px 12px; border-radius: 12px; border: none; outline: none; font-size: 16px; background: rgba(255,255,255,0.1); color: #fff; transition: background 0.3s; text-align:center; }
-header input:focus { background: rgba(76,201,240,0.2); }
-/* TARJETAS */
-.card-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; z-index:1; position: relative; }
-.card { display: flex; align-items: center; background: rgba(31,31,47,0.95); border-radius: 16px; box-shadow: 0 0 15px rgba(76,201,240,0.4); cursor: pointer; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; border: 2px solid rgba(76,201,240,0.2); flex-direction: row; padding: 5px; position: relative; }
-.card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(76,201,240,0.7); }
-.card img { width: 120px; height: 100px; object-fit: cover; border-radius: 12px; margin: 10px; flex-shrink: 0; }
-.card-content { padding: 15px; }
-.card-content h3 { margin:0; font-size:20px; color:#4cc9f0; text-shadow:0 0 10px rgba(76,201,240,0.8); }
-.card-content p { margin:5px 0 0; font-size:14px; color:#bbb; }
-#noResults { text-align:center; font-size:18px; color:#f72585; margin-top:20px; display:none; }
-/* IFRAME */
-#iframeContainer { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,15,26,0.95); z-index:999; flex-direction:column; justify-content:flex-start; align-items:flex-start; }
-#iframeContainer.show { display:flex; }
-#closeBtn { display:inline-block; margin:15px; font-size:20px; font-weight:bold; color:#fff; cursor:pointer; background: rgba(26,26,46,0.85); padding: 10px 15px; border-radius:12px; transition: all 0.3s; }
-#closeBtn:hover { color:red; transform: scale(1.05); }
-iframe { flex:1; width:100%; height:100%; border:none; opacity:0; }
-/* RESPONSIVE */
-@media screen and (max-width:1024px) { header input { flex:1 1 50%; } }
-@media screen and (max-width:768px) { .card-container { grid-template-columns: 1fr; } .card { flex-direction: column; text-align:center; } .card img { width:80%; height:auto; } }
-@media screen and (max-width:480px) { header input { flex:1 1 90%; max-width:95%; } .card img { width:100%; } .card-content h3 { font-size:18px; } .card-content p { font-size:12px; } }
-mark { background-color: rgba(76,201,240,0.5); color:#fff; border-radius:4px; padding:0 2px; }
+  body { margin: 0; font-family: Arial, sans-serif; background: #0f0f1a; color: #fff; overflow-x: hidden; position: relative; }
+  canvas#particles { position: fixed; top:0; left:0; z-index:0; }
+
+  /* HEADER */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    background: rgba(26,26,46,0.85);
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 2;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  header .logo-link { display: inline-block; z-index: 2; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); }
+  header .logo { height: 45px; }
+
+  /* Barra de búsqueda */
+  header input {
+    flex: 1 1 300px;
+    max-width: 600px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    transition: background 0.3s;
+    z-index: 2;
+  }
+
+  header input:focus { background: rgba(76,201,240,0.2); }
+
+  /* TARJETAS */
+  .card-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px; z-index:1; position: relative; }
+  .card { display: flex; align-items: center; background: rgba(31,31,47,0.95); border-radius: 16px; box-shadow: 0 0 15px rgba(76,201,240,0.4); cursor: pointer; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; border: 2px solid rgba(76,201,240,0.2); flex-direction: row; padding: 5px; position: relative; }
+  .card:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(76,201,240,0.7); }
+  .card img { width: 120px; height: 100px; object-fit: cover; border-radius: 12px; margin: 10px; flex-shrink: 0; }
+  .card-content { padding: 15px; }
+  .card-content h3 { margin:0; font-size:20px; color:#4cc9f0; text-shadow:0 0 10px rgba(76,201,240,0.8); }
+  .card-content p { margin:5px 0 0; font-size:14px; color:#bbb; }
+
+  #noResults { text-align:center; font-size:18px; color:#f72585; margin-top:20px; display:none; }
+
+  /* IFRAME */
+  #iframeContainer { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(15,15,26,0.95); z-index:999; flex-direction:column; justify-content:flex-start; align-items:flex-start; }
+  #iframeContainer.show { display:flex; }
+  #closeBtn { display:inline-block; margin:15px; font-size:20px; font-weight:bold; color:#fff; cursor:pointer; background: rgba(26,26,46,0.85); padding: 10px 15px; border-radius:12px; transition: all 0.3s; }
+  #closeBtn:hover { color:red; transform: scale(1.05); }
+  iframe { flex:1; width:100%; height:100%; border:none; opacity:0; }
+
+  /* RESPONSIVE */
+  @media screen and (max-width:1024px) { header { justify-content: center; } }
+  @media screen and (max-width:768px) { .card-container { grid-template-columns: 1fr; } .card { flex-direction: column; text-align:center; } .card img { width:80%; height:auto; } }
+  @media screen and (max-width:480px) { header { justify-content: center; } header input { flex: 1 1 90%; max-width: 95%; } .card img { width:100%; } .card-content h3 { font-size:18px; } .card-content p { font-size:12px; } }
+
+  mark { background-color: rgba(76,201,240,0.5); color:#fff; border-radius:4px; padding:0 2px; }
 </style>
 </head>
 <body>
+
 <canvas id="particles"></canvas>
+
 <header>
   <a href="https://www.youtube.com/@WeroScripts" target="_blank" class="logo-link">
     <img src="Assets/Chuchopag.png" alt="WeroScripts" class="logo">
   </a>
-  <input type="text" id="search" placeholder="Buscar script..." disabled>
+  <input type="text" id="search" placeholder="Buscar script...">
 </header>
+
 <main id="mainContent">
   <section id="cards" class="card-container">
     <div class="card" data-title="WeroHub" data-subtitle="Encuentra todos los scripts posibles en un solo script!" data-html="WeroHub.html">
@@ -58,193 +95,228 @@ mark { background-color: rgba(76,201,240,0.5); color:#fff; border-radius:4px; pa
   </section>
   <div id="noResults">No se encontraron resultados</div>
 </main>
+
 <div id="iframeContainer">
   <button id="closeBtn">✖ Volver al menú</button>
   <iframe id="weroHubFrame" src=""></iframe>
 </div>
+
 <script>
-// ===== PARTICULAS =====
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
-window.addEventListener("resize",()=>{ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; });
-const particlesArray = [];
-const colors=["#4cc9f0","#4895ef","#7209b7","#f72585"];
-const particleCount=100;
-const maxDistance=130;
-class Particle{
-  constructor(){
-    this.x=Math.random()*w;
-    this.y=Math.random()*h;
-    this.radius=Math.random()*2+1.5;
-    this.color=colors[Math.floor(Math.random()*colors.length)];
-    this.speedX=(Math.random()-0.5)*0.6;
-    this.speedY=(Math.random()-0.5)*0.6;
+  // ===== PARTICULAS =====
+  const canvas = document.getElementById("particles");
+  const ctx = canvas.getContext("2d");
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+  window.addEventListener("resize",()=>{ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; });
+
+  const particlesArray = [];
+  const colors=["#4cc9f0","#4895ef","#7209b7","#f72585"];
+  const particleCount=100;
+  const maxDistance=130;
+
+  class Particle{
+    constructor(){
+      this.x=Math.random()*w;
+      this.y=Math.random()*h;
+      this.radius=Math.random()*2+1.5;
+      this.color=colors[Math.floor(Math.random()*colors.length)];
+      this.speedX=(Math.random()-0.5)*0.6;
+      this.speedY=(Math.random()-0.5)*0.6;
+    }
+    update(){
+      this.x+=this.speedX;
+      this.y+=this.speedY;
+      if(this.x<0||this.x>w) this.speedX*=-1;
+      if(this.y<0||this.y>h) this.speedY*=-1;
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+      ctx.fillStyle=this.color;
+      ctx.fill();
+    }
   }
-  update(){
-    this.x+=this.speedX;
-    this.y+=this.speedY;
-    if(this.x<0||this.x>w) this.speedX*=-1;
-    if(this.y<0||this.y>h) this.speedY*=-1;
-  }
-  draw(){
-    ctx.beginPath();
-    ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
-    ctx.fillStyle=this.color;
-    ctx.fill();
-  }
-}
-for(let i=0;i<particleCount;i++) particlesArray.push(new Particle());
-function connectParticles(){
-  for(let a=0;a<particlesArray.length;a++){
-    for(let b=a+1;b<particlesArray.length;b++){
-      let dx=particlesArray[a].x-particlesArray[b].x;
-      let dy=particlesArray[a].y-particlesArray[b].y;
-      let distance=Math.sqrt(dx*dx+dy*dy);
-      if(distance<maxDistance){
-        ctx.beginPath();
-        ctx.strokeStyle=`rgba(76,201,240,${1-distance/maxDistance})`;
-        ctx.lineWidth=1;
-        ctx.moveTo(particlesArray[a].x,particlesArray[a].y);
-        ctx.lineTo(particlesArray[b].x,particlesArray[b].y);
-        ctx.stroke();
-        ctx.closePath();
+
+  for(let i=0;i<particleCount;i++) particlesArray.push(new Particle());
+
+  function connectParticles(){
+    for(let a=0;a<particlesArray.length;a++){
+      for(let b=a+1;b<particlesArray.length;b++){
+        let dx=particlesArray[a].x-particlesArray[b].x;
+        let dy=particlesArray[a].y-particlesArray[b].y;
+        let distance=Math.sqrt(dx*dx+dy*dy);
+        if(distance<maxDistance){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(76,201,240,${1-distance/maxDistance})`;
+          ctx.lineWidth=1;
+          ctx.moveTo(particlesArray[a].x,particlesArray[a].y);
+          ctx.lineTo(particlesArray[b].x,particlesArray[b].y);
+          ctx.stroke();
+          ctx.closePath();
+        }
       }
     }
   }
-}
-function animateParticles(){
-  ctx.clearRect(0,0,w,h);
-  particlesArray.forEach(p=>{ p.update(); p.draw(); });
-  connectParticles();
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
-// ===== TARJETAS & BUSQUEDA =====
-const cardsContainer = document.getElementById("cards");
-const searchInput = document.getElementById("search");
-const noResults = document.getElementById("noResults");
-const iframeContainer = document.getElementById("iframeContainer");
-const mainContent = document.getElementById("mainContent");
-const weroHubFrame = document.getElementById("weroHubFrame");
-const closeBtn = document.getElementById("closeBtn");
 
-let clickCount = 0;
-const adLinks = ["https://otieu.com/4/9738027","https://otieu.com/4/9738029"];
+  function animateParticles(){
+    ctx.clearRect(0,0,w,h);
+    particlesArray.forEach(p=>{ p.update(); p.draw(); });
+    connectParticles();
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
 
-function showAd(callback){
-  window.open(adLinks[clickCount-1], "_blank");
-  setTimeout(callback,500);
-}
+  // ===== TARJETAS & BUSQUEDA =====
+  const cardsContainer = document.getElementById("cards");
+  const searchInput = document.getElementById("search");
+  const noResults = document.getElementById("noResults");
+  const iframeContainer = document.getElementById("iframeContainer");
+  const mainContent = document.getElementById("mainContent");
+  const weroHubFrame = document.getElementById("weroHubFrame");
+  const closeBtn = document.getElementById("closeBtn");
 
-function enablePage(){
-  cardsContainer.style.pointerEvents="auto";
-  cardsContainer.style.opacity=1;
-  searchInput.disabled=false;
-  // Remueve listener global
-  document.removeEventListener("click", globalAdListener, true);
-}
+  let clickCount = 0;
 
-function openCard(cardId, htmlFile){
-  weroHubFrame.style.transition = "opacity 0.5s";
-  weroHubFrame.style.opacity = 0;
-  weroHubFrame.src = `https://lilwero20.github.io/Web/${htmlFile}`;
-  mainContent.style.display = "none";
-  iframeContainer.classList.add("show");
-  setTimeout(()=>{ weroHubFrame.style.opacity=1; },50);
-  window.location.hash = `menuNum=${cardId}`;
-}
+  function openCard(cardId, htmlFile){
+    weroHubFrame.style.transition = "opacity 0.5s";
+    weroHubFrame.style.opacity = 0;
+    weroHubFrame.src = `https://lilwero20.github.io/Web/${htmlFile}`;
+    mainContent.style.display = "none";
+    iframeContainer.classList.add("show");
+    setTimeout(()=>{ weroHubFrame.style.opacity = 1; }, 50);
+    window.location.hash = `menuNum=${cardId}`;
+  }
 
-function globalAdListener(e){
-  // Ignora clicks dentro del iframe y botones del menú
-  if(e.target.closest("#iframeContainer,#closeBtn")) return;
-  clickCount++;
-  showAd(()=>{
-    if(clickCount>=2) enablePage();
-  });
-  e.preventDefault();
-  e.stopPropagation();
-}
-
-// Activa listener global antes de 2 clicks
-document.addEventListener("click", globalAdListener, true);
-
-function initCards(){
-  document.querySelectorAll(".card").forEach((card,index)=>{
-    const cardId = index+1;
-    card.setAttribute("data-id", cardId);
-    card.originalTitle = card.dataset.title;
-    card.originalSubtitle = card.dataset.subtitle;
-    card.addEventListener("click",()=>{
-      if(clickCount>=2){
+  function initCards(){
+    document.querySelectorAll(".card").forEach((card, index)=>{
+      const cardId = index + 1;
+      card.setAttribute("data-id", cardId);
+      card.originalTitle = card.dataset.title;
+      card.originalSubtitle = card.dataset.subtitle;
+      card.addEventListener("click", ()=>{
         openCard(cardId, card.dataset.html);
+      });
+    });
+  }
+
+  closeBtn.addEventListener("click", ()=>{
+    weroHubFrame.style.opacity = 0;
+    setTimeout(()=>{
+      iframeContainer.classList.remove("show");
+      mainContent.style.display = "block";
+      weroHubFrame.src = "";
+      window.location.hash = "";
+    }, 500);
+  });
+
+  searchInput.addEventListener("input", ()=>{
+    const query = searchInput.value.toLowerCase();
+    let anyVisible = false;
+    document.querySelectorAll(".card").forEach(card=>{
+      const title = card.originalTitle.toLowerCase();
+      const subtitle = card.originalSubtitle.toLowerCase();
+      const titleElement = card.querySelector("h3");
+      const subtitleElement = card.querySelector("p");
+      if(title.includes(query) || subtitle.includes(query)){
+        anyVisible = true;
+        if(query!==""){
+          titleElement.innerHTML = card.originalTitle.replace(new RegExp(query,"gi"), m=>`<mark>${m}</mark>`);
+          subtitleElement.innerHTML = card.originalSubtitle.replace(new RegExp(query,"gi"), m=>`<mark>${m}</mark>`);
+        } else {
+          titleElement.textContent = card.originalTitle;
+          subtitleElement.textContent = card.originalSubtitle;
+        }
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
       }
     });
+    noResults.style.display = anyVisible ? "none" : "block";
   });
-}
 
-closeBtn.addEventListener("click", ()=>{
-  weroHubFrame.style.opacity = 0;
-  setTimeout(()=>{
-    iframeContainer.classList.remove("show");
-    mainContent.style.display = "block";
-    weroHubFrame.src="";
-    window.location.hash="";
-  },500);
-});
-
-searchInput.addEventListener("input", ()=>{
-  const query = searchInput.value.toLowerCase();
-  let anyVisible = false;
-  document.querySelectorAll(".card").forEach(card=>{
-    const title = card.originalTitle.toLowerCase();
-    const subtitle = card.originalSubtitle.toLowerCase();
-    const titleElement = card.querySelector("h3");
-    const subtitleElement = card.querySelector("p");
-    if(title.includes(query) || subtitle.includes(query)){
-      anyVisible = true;
-      if(query!==""){
-        titleElement.innerHTML = card.originalTitle.replace(new RegExp(query,"gi"), m=><mark>${m}</mark>);
-        subtitleElement.innerHTML = card.originalSubtitle.replace(new RegExp(query,"gi"), m=><mark>${m}</mark>);
-      } else {
-        titleElement.textContent = card.originalTitle;
-        subtitleElement.textContent = card.originalSubtitle;
-      }
-      card.style.display="flex";
-    } else { card.style.display="none"; }
-  });
-  noResults.style.display = anyVisible ? "none" : "block";
-});
-
-function createTab({title,subtitle,image,html}){
-  const div = document.createElement("div");
-  div.classList.add("card");
-  div.dataset.title = title;
-  div.dataset.subtitle = subtitle;
-  div.dataset.html = html;
-  div.innerHTML = `<img src="${image}" alt="${title}"><div class="card-content"><h3>${title}</h3><p>${subtitle}</p></div>`;
-  div.originalTitle = title;
-  div.originalSubtitle = subtitle;
-  cardsContainer.appendChild(div);
-  initCards();
-}
-
-initCards();
-
-window.addEventListener("load", ()=>{
-  if(window.location.hash.startsWith("#menuNum=")){
-    const num = parseInt(window.location.hash.split("=")[1]);
-    const targetCard = document.querySelector(`.card[data-id="${num}"]`);
-    if(targetCard){ openCard(num,targetCard.dataset.html); }
+  function createTab({title, subtitle, image, html}){
+    const div = document.createElement("div");
+    div.classList.add("card");
+    div.dataset.title = title;
+    div.dataset.subtitle = subtitle;
+    div.dataset.html = html;
+    div.innerHTML = `<img src="${image}" alt="${title}"><div class="card-content"><h3>${title}</h3><p>${subtitle}</p></div>`;
+    div.originalTitle = title;
+    div.originalSubtitle = subtitle;
+    cardsContainer.appendChild(div);
+    initCards();
   }
-});
 
-// EJEMPLO de creación de tarjetas nuevas
-createTab({ title: "Steal a Brainrot Wero Script", subtitle: "Auto Buy, Auto Steal, Instant Steal, Super Speed", image: "Assets/wero.png", html: "Htmls/chili.html" });
-createTab({ title: "Steal a Brainrot Ajjans Hub", subtitle: "Instan Steal, Auto Steal, Super Speed, Keyless", image: "Assets/Ajjans.png", html: "ajjans.html" });
-createTab({ title: "99 Days In The Forest", subtitle: "AutoFarm Diamonds", image: "Assets/dias.png", html: "99days.html" });
-createTab({ title: "Desarrollo", subtitle: "Descripción otro script", image: "Assets/otro.png", html: "otro.html" });
+  initCards();
+
+  window.addEventListener("load", ()=>{
+    if(window.location.hash.startsWith("#menuNum=")){
+      const num = parseInt(window.location.hash.split("=")[1]);
+      const targetCard = document.querySelector(`.card[data-id="${num}"]`);
+      if(targetCard){
+        openCard(num, targetCard.dataset.html);
+      }
+    }
+  });
+
+  // ===== BLOQUEO DE INTERACCIÓN HASTA 2 CLICKS =====
+  const adLinks = ["https://otieu.com/4/9738027","https://otieu.com/4/9738029"];
+  const overlay = document.createElement("div");
+  overlay.style.position = "fixed";
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.zIndex = 9999;
+  overlay.style.background = "transparent";
+  overlay.style.cursor = "pointer";
+  document.body.appendChild(overlay);
+
+  function showAd() {
+    if(clickCount < adLinks.length){
+      window.open(adLinks[clickCount], "_blank");
+      clickCount++;
+      if(clickCount >= 2){
+        overlay.remove();
+        searchInput.disabled = false;
+        cardsContainer.style.pointerEvents = "auto";
+      }
+    }
+  }
+
+  overlay.addEventListener("click", showAd, {capture:true});
+  searchInput.disabled = true;
+  cardsContainer.style.pointerEvents = "none";
+
+  // EJEMPLO de creación de tarjetas nuevas
+  createTab({
+    title: "Steal a Brainrot Wero Script",
+    subtitle: "Auto Buy, Auto Steal, Instant Steal, Super Speed",
+    image: "Assets/wero.png",
+    html: "Htmls/chili.html"
+  });
+  
+  createTab({
+    title: "Steal a Brainrot Ajjans Hub",
+    subtitle: "Instan Steal, Auto Steal, Super Speed, Keyless",
+    image: "Assets/Ajjans.png",
+    html: "ajjans.html"
+  });
+  
+  createTab({
+    title: "99 Days In The Forest",
+    subtitle: "AutoFarm Diamonds",
+    image: "Assets/dias.png",
+    html: "99days.html"
+  });
+
+  createTab({
+    title: "Desarrollo",
+    subtitle: "Descripción otro script",
+    image: "Assets/otro.png",
+    html: "otro.html"
+  });
 </script>
+
 </body>
 </html>
