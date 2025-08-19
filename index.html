@@ -17,12 +17,14 @@
   header {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* espacio entre logo y búsqueda */
+    justify-content: flex-start;
     padding: 10px 15px;
     background: rgba(26,26,46,0.85);
     backdrop-filter: blur(5px);
     position: relative;
     z-index: 2;
+    gap: 15px;
+    flex-wrap: wrap; /* permite que la barra baje si no hay espacio */
   }
 
   header .logo-link {
@@ -36,8 +38,8 @@
 
   /* Barra de búsqueda */
   header input {
-    flex: 1; /* ocupa todo el espacio restante */
-    margin-left: 15px; /* separa de logo */
+    flex: 1 1 300px; /* crece y se encoge con mínimo 300px */
+    max-width: 600px;
     padding: 8px 12px;
     border-radius: 12px;
     border: none;
@@ -119,15 +121,8 @@
     .card img { width:80%; height:auto; }
   }
   @media screen and (max-width:480px) {
-    header {
-      flex-direction: column; /* logo arriba, barra debajo */
-      align-items: stretch;
-    }
-    header input {
-      margin-left: 0;
-      margin-top: 10px;
-      width: 100%;
-    }
+    header { justify-content: center; }
+    header input { flex: 1 1 90%; max-width: 100%; }
     .card img { width:100%; }
     .card-content h3 { font-size:18px; }
     .card-content p { font-size:12px; }
@@ -336,9 +331,9 @@
 
   // EJEMPLO de creación de tarjetas nuevas
   createTab({
-    title: "Steal a Brainrot Chili Hub",
+    title: "Steal a Brainrot Wero Script",
     subtitle: "Auto Buy, Auto Steal, Instant Steal, Super Speed",
-    image: "Assets/chili.png",
+    image: "Assets/wero.png",
     html: "Htmls/chili.html"
   });
   
