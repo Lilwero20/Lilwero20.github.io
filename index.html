@@ -181,7 +181,7 @@
   function openCard(cardId, htmlFile){
     weroHubFrame.style.transition = "opacity 0.5s";
     weroHubFrame.style.opacity = 0;
-    weroHubFrame.src = `https://lilwero20.github.io/Web/${htmlFile}`;
+    weroHubFrame.src = `https://lilwero20.github.io/${htmlFile}`;
     mainContent.style.display = "none";
     iframeContainer.classList.add("show");
     setTimeout(()=>{ weroHubFrame.style.opacity = 1; }, 50);
@@ -328,5 +328,6 @@
 
 </body>
 </html>
+
 
 
